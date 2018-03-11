@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+</head>
+
+<body>
+    <p>Your Gold: {{ request.session.counter }}</p>
+    <form action='/process' method="post">
+        {% csrf_token %}
+        <h3>Farm</h3>
+        <p>(earns 10-20 gold)</p>
+        <input type='hidden' name='place' value='Farm'>
+        <input type='submit' value='Find Gold!'>
+    </form>
+    <form action='/process' method="post">
+        {% csrf_token %}
+        <h3>Cave</h3>
+        <p>(earns 5-10 gold)</p>
+        <input type='hidden' name='place' value='Cave'>
+        <input type='submit' value='Find Gold!'>
+    </form>
+    <form action='/process' method="post">
+        {% csrf_token %}
+        <h3>House</h3>
+        <p>(earns 2-5 gold)</p>
+        <input type='hidden' name='place' value='House'>
+        <input type='submit' value='Find Gold!'>
+    </form>
+    <form action='/process' method="post">
+        {% csrf_token %}
+        <h3>Casino</h3>
+        <p>(earns/takes 0-50 gold)</p>
+        <input type='hidden' name='place' value='Casino'>
+        <input type='submit' value='Find Gold!'>
+    </form>
+    <textarea>{{ request.session.activity }}</textarea>
+    <form action='/reset' method='post'>
+        {% csrf_token %}
+        <input type='submit' value='Start Over'>
+    </form>
+</body>
+
+</html>

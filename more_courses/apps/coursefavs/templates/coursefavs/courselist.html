@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Courses</title>
+</head>
+<body>
+    <h3>Courses</h3>
+    <a href='/courses/new'>Add a Course</a>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <td>Course Name</td>
+                <td>Description</td>
+                <td>Date Added</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mycourse in mycourses %}
+            <tr>
+                <td>{{mycourse.name}}</td>
+                <td>{{mycourse.description}}</td>
+                <td><a href='/courses/{{mycourse.id}}/favorite'>Make it a Favorite!</a></td>
+                <td><a href='/courses/{{mycourse.id}}/remove'>Remove</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Favorites</h3>
+    <table>
+        <thead>
+            <tr>
+                <td>Course Name</td>
+                <td>Description</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in favorite %}
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.description}}</td>
+                <td><a href='/courses/{{course.id}}/popfavback'>Remove from Favorites</a></td>
+            </tr>
+           {% endfor %} 
+        </tbody>
+    </table> 
+    <p></p>   
+    <a href='/logout'>Logout</a>
+</body>
+</html>

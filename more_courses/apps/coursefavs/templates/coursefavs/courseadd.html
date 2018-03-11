@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a Course</title>
+</head>
+
+<body>
+    <form action='create' method='post'>
+        {% csrf_token %}
+        <label>Name:</label>
+        <input type='text' name='name'>
+        <label>Description:</label>
+        <input type 'text' name='description'>
+        <label>Date Added: (default to today)</label>
+        <input type='submit' value='Add'>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>
